@@ -44,14 +44,17 @@ class ProductManager {
 
     async getProducts() {
         const products = this.products;
-        console.log(products);
+        //console.log(products);
         return products;
     }
 
     async getProductById(id) {
+        //console.log(id);
         const products = this.products;
+        //console.log(products);
         // Buscar el producto con el id especificado
-        const product = products.find((p) => p.id === id);
+        const product = products.find((p) => p.id == id);
+        //console.log(product);
         return product;
     }
 
@@ -93,8 +96,10 @@ class ProductManager {
         try {
             const data = fs.readFileSync(this.path, 'utf8');
             this.products = JSON.parse(data);
+            console.log("File readed");
         } catch (error) {
             console.error('Error initializing ProductManager:', error);
+            console.log("File error");
             this.products = [];
         }
     }
@@ -110,31 +115,31 @@ class ProductManager {
             }
         });
     }
-
-    /*
-    async init() {
-        try {
-            this.products = await this.readFromFile();
-            this.isInitialized = true;
-        } catch (error) {
-            console.error('Error initializing ProductManager:', error);
-            this.products = [];
-        }
-    }
-
-    async readFromFilePromise() {
-        return new Promise((resolve, reject) => {
-            try {
-                const data = fs.readFileSync(this.path, 'utf8');
-                console.log("Promesa resuelta");
-                resolve(JSON.parse(data));
-            } catch (error) {
-                console.log("Promesa resuelta en catch", error);
-                reject(error);
-            }
-        });
-    }
-    */
 }
 
 module.exports = ProductManager;
+
+/*
+async init() {
+    try {
+        this.products = await this.readFromFile();
+        this.isInitialized = true;
+    } catch (error) {
+        console.error('Error initializing ProductManager:', error);
+        this.products = [];
+    }
+}
+
+async readFromFilePromise() {
+    return new Promise((resolve, reject) => {
+        try {
+            const data = fs.readFileSync(this.path, 'utf8');
+            console.log("Promesa resuelta");
+            resolve(JSON.parse(data));
+        } catch (error) {
+            console.log("Promesa resuelta en catch", error);
+            reject(error);
+        }
+    });
+}
+*/
