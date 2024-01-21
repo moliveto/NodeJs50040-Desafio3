@@ -6,6 +6,8 @@
 
 ## Endpoints
 
+### Ejecutar node app.js
+
 - Obtener todos los productos
 
 ```
